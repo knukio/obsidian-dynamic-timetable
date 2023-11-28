@@ -5,9 +5,11 @@ type BufferTimeRowProps = {
 };
 
 const formatTime = (minutes: number): string => {
-  const hours = Math.floor(minutes / 60);
-  const remainingMinutes = minutes % 60;
-  return `${hours}h${remainingMinutes}min`;
+  const absoluteMinutes = Math.abs(minutes);
+  const hours = Math.floor(absoluteMinutes / 60);
+  const remainingMinutes = absoluteMinutes % 60;
+  const sign = minutes < 0 ? '-' : '';
+  return `${sign}${hours}h${remainingMinutes}min`;
 };
 
 const BufferTimeRow: React.FC<BufferTimeRowProps> = ({ bufferTime }) => (
